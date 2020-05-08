@@ -2,9 +2,9 @@
 import datetime
 
 import pandas as pd
-import pandas.io.data as web
+import pandas_datareader as web
 import matplotlib.pyplot as plt
-from pandas.tools.plotting import scatter_matrix
+# from pandas.tools.plotting import scatter_matrix
 
 def download_stock_data(file_name,company_code,year1,month1,date1,year2,month2,date2):
 	start = datetime.datetime(year1, month1, date1)
@@ -19,18 +19,16 @@ def load_stock_data(file_name):
 	df = pd.read_pickle(file_name)
 	return df
 
-#download_stock_data('lg.data','066570',2015,1,1,2015,11,30)
-#download_stock_data('samsung_2010.data','005930',2010,1,1,2015,11,30)
+download_stock_data('../data/lg.pickle','066570',2015,1,1,2020,4,30)
+download_stock_data('../data/samsung.pickle','005930',2015,1,1,2020,4,30)
 #download_stock_data('hanmi.data','128940',2015,1,1,2015,11,30)
 
-df = load_stock_data('samsung_2010.data')
+df = load_stock_data('../data/samsung.pickle')
 df['Open'].plot()
 plt.axhline(df['Open'].mean(),color='red')
 plt.show()
-#print df
 
-print df.describe()
-
+print (df.describe())
 """
 
 #print df.quantile([.25,.5,.75,1])
