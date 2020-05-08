@@ -2,9 +2,9 @@
 import os,datetime
 
 import pandas as pd
-import pandas.io.data as web
+import pandas_datareader as web
 import matplotlib.pyplot as plt
-from pandas.tools.plotting import scatter_matrix
+from pandas.plotting import scatter_matrix
 
 
 def get_data_file_path(file_name):

@@ -2,10 +2,10 @@
 import os,sys,datetime
 import numpy as np
 import pandas as pd
-import pandas.io.data as web
+import pandas_datareader as web
 import matplotlib.pyplot as plt
-from pandas.compat import range, lrange, lmap, map, zip
-from pandas.tools.plotting import scatter_matrix,autocorrelation_plot
+# from pandas_compat import range, lrange, lmap, map, zip
+from pandas.plotting import scatter_matrix,autocorrelation_plot
 
 parentPath = os.path.abspath("..")
 if parentPath not in sys.path:
@@ -25,17 +25,17 @@ def get_autocorrelation_dataframe(series):
     c0 = np.sum((data - mean) ** 2) / float(n)
 
     x = np.arange(n) + 1
-    y = lmap(r, x)
+    y = map(r, x)
 
     df = pd.DataFrame(y, index=x)
 
     return df
 
 
-df_samsung = load_stock_data('samsung.data')
+df_samsung = load_stock_data('../data/samsung.data')
 df_samsung_corr = get_autocorrelation_dataframe(df_samsung['Close'])
 
-print df_samsung_corr
+print(df_samsung_corr)
 #for i in range(df_samsung.shape[0]):
 #	arr = df_samsung['Close'].autocorr(lag=i)
 #	print "%s, %s" % (i,arr)
